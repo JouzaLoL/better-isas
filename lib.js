@@ -41,8 +41,8 @@ function parse(html) {
             predmet: markTr.children[1].firstChild.data,
             znamka: parseInt(markTr.children[2].firstChild.data),
             vaha: parseInt(markTr.children[3].firstChild.data.slice(1)),
-            tema: markTrs[0].children[4].firstChild.data,
-            ucitel: markTrs[0].children[5].firstChild.data
+            tema: markTr.children[4].firstChild.data,
+            ucitel: markTr.children[5].firstChild.data
         };
     }
     return markTrs.map(parseTr).filter((znamka) => !isNaN(znamka.znamka));
