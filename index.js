@@ -10,6 +10,15 @@ app.get("/", (req, res) => {
     <html lang="cs">
     
     <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111548982-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111548982-2');
+    </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -108,6 +117,16 @@ app.post('/stats', async (req, res) => {
     <html lang="cs">
     
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111548982-2"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111548982-2');
+        </script>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -137,7 +156,7 @@ app.post('/stats', async (req, res) => {
                 </div>
                 <div class="col-sm-4">
                     <h2>Průměry</h2>
-                    <table class="table table-sm table-striped">
+                    <table class="table table-sm table-striped table-responsive">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Předmět</th>
@@ -152,7 +171,7 @@ app.post('/stats', async (req, res) => {
                 </div>
                 <div class="col-sm-8">
                     <h2>Známky</h2>
-                    <table class="table table-sm table-striped">
+                    <table class="table table-sm table-striped table-bordered table-responsive">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Datum</th>
