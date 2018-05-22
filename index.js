@@ -195,4 +195,8 @@ app.post('/stats', async (req, res) => {
     res.send(template);
 });
 
+app.get('/stats', (req, res) => {
+    res.redirect("/");
+});
+
 app.listen(80, () => console.log("BetterISAS listening on port 80"));
