@@ -114,6 +114,13 @@ app.post('/stats', async (req, res) => {
         <title>BetterISAS</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
             crossorigin="anonymous">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-1168224081669943",
+                enable_page_level_ads: true
+            });
+        </script>
     </head>
     
     <body>
