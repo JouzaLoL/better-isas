@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const parser = require("./lib");
 const bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded());
+app.use(bodyparser.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res) => {
@@ -83,7 +83,6 @@ function prumery(znamky) {
 }
 
 const interpolate = require('color-interpolate');
-const invert = require('invert-color');
 
 app.post('/stats', async (req, res) => {
     const znamky = await parser(req.body.username, req.body.password);
@@ -130,7 +129,7 @@ app.post('/stats', async (req, res) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>BetterISAS</title>
+        <title>Better iSAS</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
             crossorigin="anonymous">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -152,7 +151,7 @@ app.post('/stats', async (req, res) => {
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1>Better ISAS</h1>
+                    <h1>Better iSAS</h1>
                 </div>
                 <div class="col-sm-4">
                     <h2>Průměry</h2>
@@ -195,8 +194,9 @@ app.post('/stats', async (req, res) => {
     res.send(template);
 });
 
+// Redirect the user to root when attempting to GET /stats
 app.get('/stats', (req, res) => {
     res.redirect("/");
 });
 
-app.listen(80, () => console.log("BetterISAS listening on port 80"));
+app.listen(80, () => console.log("Better-iSAS server listening on port 80"));

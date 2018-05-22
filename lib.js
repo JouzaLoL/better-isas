@@ -18,15 +18,9 @@ async function main(username, password) {
     });
 
     const resBuffer = await request("/prubezna-klasifikace.php", {
-        method: "post",
-        jar: true,
-        encoding: null,
-        formData: {
-            "login-isas-username": "xvacek1",
-            "login-isas-password": "Dhcepic10",
-            "login-isas-send": "isas-send"
-        }
+        encoding: null
     });
+
     return parse(decode(resBuffer));
 }
 
