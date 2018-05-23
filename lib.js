@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 const request = requestProm.defaults({
     jar: true,
     baseUrl: "http://isas.gytool.cz/isas/"
-})
+});
 
 async function main(username, password) {
     await request("/prihlasit.php", {
@@ -25,7 +25,7 @@ async function main(username, password) {
 }
 
 function parse(html) {
-    const $ = cheerio.load(html)
+    const $ = cheerio.load(html);
     const trs = $("#isas-obsah > table > tbody tr");
     const markTrs = trs.toArray().slice(1);
 
