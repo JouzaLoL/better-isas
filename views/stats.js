@@ -1,10 +1,12 @@
-module.exports = (znamkyRows, prumeryRows) => `<div class="container">
+
+module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="container">
 <div class="row">
-    <div class="col-sm-12">
-        <h1>Better iSAS</h1>
+    <div class="col-sm-12 text-center">
+        <h1>${require("./common").randomTitle()}</h1>
+        <hr>
     </div>
     <div class="col-sm-4">
-        <h2>Průměry</h2>
+        <h3>Průměry</h2>
         <table class="table table-sm table-striped table-responsive">
             <thead class="thead-dark">
                 <tr>
@@ -17,9 +19,11 @@ module.exports = (znamkyRows, prumeryRows) => `<div class="container">
                 ${prumeryRows}
             </tbody>
         </table>
+        <h3>Vyznamenání: ${isVyznamenani ? "&#10004;" : "&#10060;"}</h3>
+        
     </div>
     <div class="col-sm-8">
-        <h2>Známky</h2>
+        <h3>Známky</h2>
         <table class="table table-sm table-striped table-bordered table-responsive">
             <thead class="thead-dark">
                 <tr>

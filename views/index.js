@@ -1,8 +1,8 @@
-const getRandomTitle = require("./common");
 module.exports = () => `<div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <h1>${getRandomTitle()}</h1>
+        <div class="col-sm-4 text-center">
+            <h1>${require("./common").randomTitle()}</h1>
+            <hr>
             <form action="/stats" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Přihlašovací jméno" name="username" id="usr">

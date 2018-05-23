@@ -1,5 +1,3 @@
-const getRandomTitle = require("./common");
-
 module.exports = (content = "", head = "") => `<!DOCTYPE html>
 <html lang="cs">
 
@@ -16,7 +14,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>${getRandomTitle()}</title>
+    <title>${require("./common").randomTitle()}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     ${head}

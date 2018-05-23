@@ -3,7 +3,7 @@ const app = express();
 const bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
 
-const parser = require("./lib");
+const parser = require("./isasLib");
 const base = require("./views/base");
 const index = require("./views/index");
 
@@ -40,6 +40,15 @@ function prumery(znamky) {
     return result;
 }
 
+function isVyznamenani(znamky) {
+    const averages = prumery(znamky).map((vazenyPrumer) => {
+        return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
+    }).sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
+    const numberOf2s = averages.filter((avg) => avg.vyslednaZnamka === 2).length;
+    const numberOf1s = averages.filter((avg) => avg.vyslednaZnamka === 2).length;
+    return averages.every((avg) => avg.vyslednaZnamka <= 2) && numberOf1s > numberOf2s;
+}
+
 const interpolate = require("color-interpolate");
 
 app.post("/stats", async (req, res) => {
@@ -72,7 +81,7 @@ app.post("/stats", async (req, res) => {
         .join("");
 
     const template = base(
-        require("./views/stats")(znamkyRows, prumeryRows),
+        require("./views/stats")(znamkyRows, prumeryRows, isVyznamenani(znamky)),
         require("./views/ads")()
     );
 
