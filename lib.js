@@ -1,12 +1,23 @@
 const requestProm = require("request-promise-native");
-const decode = require("./decode");
 const cheerio = require("cheerio");
+
+const decodeWin1250 = require("./decode");
+
+/* Request instance */
 const request = requestProm.defaults({
     jar: true,
     baseUrl: "http://isas.gytool.cz/isas/"
 });
 
-async function main(username, password) {
+/**
+ * Log into iSAS and obtain znamky
+ * 
+ * @param {any} username 
+ * @param {any} password 
+ * @returns Znamky
+ */
+async function getZnamky(username, password) {
+    /* Log into iSAS to obtain session cookie */
     await request("/prihlasit.php", {
         method: "post",
         jar: true,
@@ -21,10 +32,16 @@ async function main(username, password) {
         encoding: null
     });
 
-    return parse(decode(resBuffer));
+    return parsePrubeznaKlasifikace(decodeWin1250(resBuffer));
 }
 
-function parse(html) {
+/**
+ * Parse prubezna-klasifikace
+ * 
+ * @param {any} html prubezna-klasifikace html
+ * @returns Znamky
+ */
+function parsePrubeznaKlasifikace(html) {
     const $ = cheerio.load(html);
     const trs = $("#isas-obsah > table > tbody tr");
     const markTrs = trs.toArray().slice(1);
@@ -39,7 +56,11 @@ function parse(html) {
             ucitel: markTr.children[5].firstChild.data
         };
     }
-    return markTrs.map(parseTr).filter((znamka) => !isNaN(znamka.znamka));
+
+    return markTrs
+        .map(parseTr)
+        /* Filter out letters */
+        .filter((znamka) => !isNaN(znamka.znamka));
 }
 
-module.exports = main;
+module.exports = getZnamky;

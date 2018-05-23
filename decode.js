@@ -17,6 +17,13 @@ const error = (codePoint, mode) => {
 };
 
 // Link: https://encoding.spec.whatwg.org/#single-byte-decoder
+/**
+ * Decode a Windows-1250 Buffer into UTF-8 String
+ * 
+ * @param {Buffer} input 
+ * @param {any?} [options]
+ * @returns {string} UTF-8 string
+ */
 function decode(input, options) {
     const inputView = new Uint8Array(input);
     let mode;
