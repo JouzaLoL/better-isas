@@ -3,10 +3,8 @@ const cheerio = require("cheerio");
 
 const decodeWin1250 = require("./decode");
 
-var cookieJar = requestProm.jar();
 /* Request instance */
 const request = requestProm.defaults({
-    jar: cookieJar,
     baseUrl: "http://isas.gytool.cz/isas/"
 });
 
@@ -19,11 +17,12 @@ const request = requestProm.defaults({
  */
 async function getZnamky(username, password) {
     /* Refresh the cookie jar, fixes cookie leaks */
-    cookieJar = requestProm.jar();
+    const cookieJar = requestProm.jar();
 
     /* Log into iSAS to obtain session cookie */
     await request("/prihlasit.php", {
         method: "post",
+        jar: cookieJar,
         formData: {
             "login-isas-username": username,
             "login-isas-password": password,
@@ -32,6 +31,7 @@ async function getZnamky(username, password) {
     });
 
     const resBuffer = await request("/prubezna-klasifikace.php", {
+        jar: cookieJar,
         encoding: null
     });
 
