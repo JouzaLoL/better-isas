@@ -3,9 +3,10 @@ const cheerio = require("cheerio");
 
 const decodeWin1250 = require("./decode");
 
+var cookieJar = requestProm.jar();
 /* Request instance */
 const request = requestProm.defaults({
-    jar: true,
+    jar: cookieJar,
     baseUrl: "http://isas.gytool.cz/isas/"
 });
 
@@ -17,10 +18,12 @@ const request = requestProm.defaults({
  * @returns Znamky
  */
 async function getZnamky(username, password) {
+    /* Refresh the cookie jar, fixes cookie leaks */
+    cookieJar = requestProm.jar();
+
     /* Log into iSAS to obtain session cookie */
     await request("/prihlasit.php", {
         method: "post",
-        jar: true,
         formData: {
             "login-isas-username": username,
             "login-isas-password": password,
