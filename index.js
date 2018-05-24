@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.static("./icons", {}));
 
 const parser = require("./isasLib");
 const base = require("./views/base");
