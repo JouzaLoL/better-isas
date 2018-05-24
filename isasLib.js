@@ -16,7 +16,7 @@ const request = requestProm.defaults({
  * @returns Znamky
  */
 async function getZnamky(username, password) {
-    /* Refresh the cookie jar, fixes cookie leaks */
+    /* Create a cookie jar on every session to prevent cookie leaks */
     const cookieJar = requestProm.jar();
 
     /* Log into iSAS to obtain session cookie */
@@ -55,7 +55,7 @@ function parsePrubeznaKlasifikace(html) {
             predmet: markTr.children[1].firstChild.data,
             znamka: parseInt(markTr.children[2].firstChild.data),
             vaha: parseInt(markTr.children[3].firstChild.data.slice(1)),
-            tema: markTr.children[4].firstChild.data,
+            tema: markTr.children[4].firstChild ? markTr.children[4].firstChild.data : "",
             ucitel: markTr.children[5].firstChild.data
         };
     }
