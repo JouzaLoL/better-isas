@@ -82,8 +82,7 @@ app.post("/stats", async (req, res) => {
         .join("");
 
     const template = base(
-        require("./views/stats")(znamkyRows, prumeryRows, isVyznamenani(znamky)),
-        require("./views/ads")()
+        require("./views/stats")(znamkyRows, prumeryRows, isVyznamenani(znamky))
     );
 
     res.send(template);
