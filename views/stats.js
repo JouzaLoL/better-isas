@@ -59,14 +59,14 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                                 color: white;
                                 ">
                                 <tr>
-                                    <th scope="col">Datum</th>
-                                    <th scope="col">Předmět</th>
+                                    <th scope="col" id="datum">Datum</th>
+                                    <th scope="col" id="predmet">Předmět</th>
                                     <th scope="col">Známka</th>
                                     <th scope="col">Váha</th>
                                     <th scope="col">Téma</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="znamky">
                                 ${znamkyRows}
                             </tbody>
                         </table>
@@ -75,10 +75,44 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
+    <script>
+        Array.prototype.groupBy = function () {
+            return this.reduce(function (groups, item) {
+                const val = item.children[1].innerHTML;
+                groups[val] = groups[val] || [];
+                groups[val].push(item);
+                return groups;
+            }, {})
+        };
 
-        </div>
-    </div>
+        function flatten(items) {
+            const flat = [];
+
+            items.forEach(item => {
+                if (Array.isArray(item)) {
+                    flat.push(...flatten(item));
+                } else {
+                    flat.push(item);
+                }
+            });
+
+            return flat;
+        }
+
+        window.puvodniHTML = document.querySelector("#znamky").innerHTML;
+
+        document.querySelector("#predmet").addEventListener("click", () => {
+            const groups = Array
+                .from(document.querySelectorAll("#znamky tr"))
+                .groupBy();
+
+            const html = flatten(Object.values(groups)).map((tr) => tr.outerHTML).join("");
+            document.querySelector("#znamky").innerHTML = html;
+        });
+
+        document.querySelector("#datum").addEventListener("click", () => {
+            document.querySelector("#znamky").innerHTML = window.puvodniHTML;
+        });
+    </script>
 </div>
 </div>`;
