@@ -57,6 +57,7 @@ router.post("/stats", async (req, res) => {
 // Redirect the user to root when attempting to GET /stats
 router.get("/stats", async (req, res) => {
     const auth = JSON.parse(req.cookies["auth"]);
+    // @ts-ignore
     const znamky = await parser(...auth);
     const vazenePrumery = prumery(znamky).map((vazenyPrumer) => {
         return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };

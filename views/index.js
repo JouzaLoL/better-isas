@@ -14,7 +14,7 @@ module.exports = () => `<div class="container shadow-sm">
                     <input type="password" class="form-control" placeholder="Heslo" name="password" id="pwd">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-block" style="background: #33528B; color: white;">Přihlásit</button>
+                    <button type="submit" onclick="this.classList.add('pulse')" class="animated infinite btn btn-block" style="background: #33528B; color: white;">Přihlásit</button>
                 </div>
             </form>
         </div>
