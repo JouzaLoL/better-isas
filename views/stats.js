@@ -3,7 +3,7 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
     <div class="row shadow-sm" style="color: #33528B">
         <div class="col pl-2">
             <h1 class="animated pulse mb-0 p-1 font-weight-bold text-center float-left">Better iSAS</h1>
-            <a href="/" class="float-right float-right btn btn-light" style="margin-top: 10px;">Odhlásit</a>
+            <a href="/logout" class="float-right float-right btn btn-light" style="margin-top: 10px;">Odhlásit</a>
         </div>
     </div>
     <div class="row pt-3">

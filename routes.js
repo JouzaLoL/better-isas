@@ -50,13 +50,14 @@ function isVyznamenani(znamky) {
 const interpolate = require("color-interpolate");
 
 router.post("/stats", async (req, res) => {
-    res.cookie("auth", JSON.stringify([req.body.username, req.body.password]), { maxAge: 24 * 60 * 60 * 1000 });
+    const cookieString = Buffer.from(JSON.stringify([req.body.username, req.body.password])).toString("base64");
+    res.cookie("auth", cookieString, { maxAge: 24 * 60 * 60 * 1000 });
     res.redirect("/stats");
 });
 
 // Redirect the user to root when attempting to GET /stats
 router.get("/stats", async (req, res) => {
-    const auth = JSON.parse(req.cookies["auth"]);
+    const auth = JSON.parse(Buffer.from(req.cookies["auth"], "base64").toString("ascii"));
     // @ts-ignore
     const znamky = await parser(...auth);
     const vazenePrumery = prumery(znamky).map((vazenyPrumer) => {
@@ -93,6 +94,11 @@ router.get("/stats", async (req, res) => {
     );
 
     res.send(template);
+});
+
+router.get("/logout", (req, res) => {
+    res.clearCookie("auth");
+    res.redirect("/");
 });
 
 module.exports = router;
