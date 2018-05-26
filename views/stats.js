@@ -1,5 +1,5 @@
 
-module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="container shadow-sm">
+module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shadow-sm">
     <div class="row shadow-sm" style="color: #33528B">
         <div class="col pl-2">
             <h1 class="mb-0 p-1 font-weight-bold text-center">Better iSAS</h1>
@@ -39,7 +39,7 @@ module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="contai
                     <div class="card-text">
                         <table class="table table-sm table-hover table-striped table-borderless">
                             <tbody>
-                                <th>Vyznamenání: ${isVyznamenani ? "&#10004;" : "&#10060;"}</th>
+                                <th>Vyznamenání: ${misc.vyznamenani ? "&#10004;" : "&#10060;"}</th>
                             </tbody>
                         </table>
                     </div>
