@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
+const Raven = require("raven");
+
+// Sentry.io error handling
+Raven.config("https://ff58bf1bb33348ddb0c5b56bbdd932f2@sentry.io/1214091").install();
+app.use(Raven.requestHandler());
+
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.static("./icons", {}));
 
@@ -91,6 +97,16 @@ app.post("/stats", async (req, res) => {
 // Redirect the user to root when attempting to GET /stats
 app.get("/stats", (req, res) => {
     res.redirect("/");
+});
+
+/* Error handlers */
+app.use(Raven.errorHandler());
+
+app.use(function onError(err, req, res, next) {
+    // The error id is attached to `res.sentry` to be returned
+    // and optionally displayed to the user for support.
+    res.statusCode = 500;
+    res.end(res.sentry + "\n");
 });
 
 // Start the server

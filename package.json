@@ -11,6 +11,7 @@
   "author": "Josef Vacek",
   "license": "ISC",
   "dependencies": {
+    "@types/raven": "^2.5.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
@@ -21,6 +22,7 @@
     "invert-color": "^1.2.3",
     "npm": "^6.0.1",
     "querystring": "^0.2.0",
+    "raven": "^2.6.2",
     "request": "^2.86.0",
     "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4"

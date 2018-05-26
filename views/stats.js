@@ -1,8 +1,8 @@
 
-module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="container">
+module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="container shadow-sm">
     <div class="row shadow-sm" style="color: #33528B">
         <div class="col pl-2">
-            <h1 class="mb-0 p-1">Better iSAS</h1>
+            <h1 class="mb-0 p-1 font-weight-bold text-center">Better iSAS</h1>
         </div>
     </div>
     <div class="row pt-3">
@@ -13,8 +13,11 @@ module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="contai
                         <h5 class="m-0">Průměry</h5>
                     </div>
                     <div class="card-text">
-                        <table class="table table-sm table-hover">
-                            <thead class="thead">
+                        <table class="table table-sm table-hover table-striped table-borderless">
+                            <thead class="thead" style="
+                            background: #33528B;
+                            color: white;
+                            ">
                                 <tr>
                                     <th scope="col">Předmět</th>
                                     <th scope="col">Vážený průměr</th>
