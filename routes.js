@@ -50,7 +50,14 @@ function isVyznamenani(znamky) {
 const interpolate = require("color-interpolate");
 
 router.post("/stats", async (req, res) => {
-    const znamky = await parser(req.body.username, req.body.password);
+    res.cookie("auth", JSON.stringify([req.body.username, req.body.password]), { maxAge: 24 * 60 * 60 * 1000 });
+    res.redirect("/stats");
+});
+
+// Redirect the user to root when attempting to GET /stats
+router.get("/stats", async (req, res) => {
+    const auth = JSON.parse(req.cookies["auth"]);
+    const znamky = await parser(...auth);
     const vazenePrumery = prumery(znamky).map((vazenyPrumer) => {
         return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
     }).sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
@@ -85,11 +92,6 @@ router.post("/stats", async (req, res) => {
     );
 
     res.send(template);
-});
-
-// Redirect the user to root when attempting to GET /stats
-router.get("/stats", (req, res) => {
-    res.redirect("/");
 });
 
 module.exports = router;
