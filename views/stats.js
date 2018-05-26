@@ -39,7 +39,7 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                     <div class="card-text">
                         <table class="table table-sm table-hover table-striped table-borderless">
                             <tbody>
-                                <th>Vyznamenání: ${misc.vyznamenani ? "&#10004;" : "&#10060;"}</th>
+                                <td>Vyznamenání: ${misc.vyznamenani ? "&#10004;" : "&#10060;"}</td>
                             </tbody>
                         </table>
                     </div>
