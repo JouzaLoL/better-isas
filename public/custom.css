@@ -26,3 +26,13 @@ table.table {
 .card-body {
     padding: 0;
 }
+
+.td-color {
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 5% 100%;
+}
+
+tr {
+    white-space: nowrap;
+}

@@ -8,7 +8,7 @@ Raven.config("https://ff58bf1bb33348ddb0c5b56bbdd932f2@sentry.io/1214091").insta
 app.use(Raven.requestHandler());
 
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use(express.static("./icons", {}));
+app.use(express.static("./public", {}));
 
 const parser = require("./isasLib");
 const base = require("./views/base");
@@ -72,8 +72,8 @@ app.post("/stats", async (req, res) => {
     const prumeryRows = vazenePrumery
         .map((prumer) => `<tr>
     <td>${prumer.predmet}</td>
-    <td style="border-right: solid 3px ${prumerToRgb(prumer.vazenyPrumer)}">${prumer.vazenyPrumer}</td>
-    <td style="border-right: solid 3px ${prumerToRgb(prumer.vyslednaZnamka)}">${prumer.vyslednaZnamka}</td>
+    <td class="td-color" style="background-image: linear-gradient(to left, ${prumerToRgb(prumer.vazenyPrumer)} 0%, ${prumerToRgb(prumer.vazenyPrumer)} 100%);">${prumer.vazenyPrumer}</td>
+    <td class="td-color" style="background-image: linear-gradient(to left, ${prumerToRgb(prumer.vyslednaZnamka)} 0%, ${prumerToRgb(prumer.vyslednaZnamka)} 100%);">${prumer.vyslednaZnamka}</td>
 </tr>`)
         .join("");
 
