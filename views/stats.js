@@ -31,27 +31,54 @@ module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="contai
                     </div>
                 </div>
             </div>
-
-
-            <h3>Vyznamenání: ${isVyznamenani ? "&#10004;" : "&#10060;"}</h3>
-
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="card-title p-2" style="border-top: solid 3px #33528B">
+                        <h5 class="m-0">Ostatní</h5>
+                    </div>
+                    <div class="card-text">
+                        <table class="table table-sm table-hover table-striped table-borderless">
+                            <tbody>
+                                <th>Vyznamenání: ${isVyznamenani ? "&#10004;" : "&#10060;"}</th>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-6">
-            <h3>Známky</h2>
-                <table class="table table-sm table-striped table-bordered table-responsive">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Datum</th>
-                            <th scope="col">Předmět</th>
-                            <th scope="col">Známka</th>
-                            <th scope="col">Váha</th>
-                            <th scope="col">Téma</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${znamkyRows}
-                    </tbody>
-                </table>
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="card-title p-2" style="border-top: solid 3px #33528B">
+                        <h5 class="m-0">Známky</h5>
+                    </div>
+                    <div class="card-text">
+                        <table class="table table-responsive table-sm table-hover table-striped table-borderless">
+                            <thead class="thead" style="
+                                background: #33528B;
+                                color: white;
+                                ">
+                                <tr>
+                                    <th scope="col">Datum</th>
+                                    <th scope="col">Předmět</th>
+                                    <th scope="col">Známka</th>
+                                    <th scope="col">Váha</th>
+                                    <th scope="col">Téma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${znamkyRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-6">
+
+        </div>
+    </div>
+</div>
 </div>`;
