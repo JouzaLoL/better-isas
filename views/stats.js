@@ -1,6 +1,6 @@
 
 module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="container">
-    <div class="row shadow-sm">
+    <div class="row shadow-sm" style="color: #33528B">
         <div class="col pl-2">
             <h1 class="mb-0 p-1">Better iSAS</h1>
         </div>
@@ -9,7 +9,7 @@ module.exports = (znamkyRows, prumeryRows, isVyznamenani) => `<div class="contai
         <div class="col-sm-6">
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
-                    <div class="card-title p-2">
+                    <div class="card-title p-2" style="border-top: solid 3px #33528B">
                         <h5 class="m-0">Průměry</h5>
                     </div>
                     <div class="card-text">
