@@ -59,8 +59,12 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                                 color: white;
                                 ">
                                 <tr>
-                                    <th scope="col" id="datum">Datum</th>
-                                    <th scope="col" id="predmet">Předmět</th>
+                                    <th scope="col" id="datum">
+                                        <button class="btn btn-outline-light btn-block active btn-sm">Datum</button>
+                                    </th>
+                                    <th scope="col" id="predmet">
+                                        <button class="btn btn-outline-light btn-block active btn-sm">Předmět</button>
+                                    </th>
                                     <th scope="col">Známka</th>
                                     <th scope="col">Váha</th>
                                     <th scope="col">Téma</th>

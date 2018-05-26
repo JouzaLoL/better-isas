@@ -36,3 +36,7 @@ table.table {
 tr {
     white-space: nowrap;
 }
+
+th {
+    font-weight: normal;
+}
