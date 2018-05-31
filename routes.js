@@ -55,11 +55,18 @@ router.post("/stats", async (req, res) => {
     res.redirect("/stats");
 });
 
-// Redirect the user to root when attempting to GET /stats
 router.get("/stats", async (req, res) => {
-    const auth = JSON.parse(Buffer.from(req.cookies["auth"], "base64").toString("ascii"));
+    const authCookie = Buffer.from(req.cookies["auth"], "base64").toString("ascii");
+    if (!authCookie) {
+        res.redirect("/");
+    }
+    const auth = JSON.parse(authCookie);
     // @ts-ignore
     const znamky = await parser(...auth);
+    // TODO: Redirect to a bad login info page
+    if (!znamky) {
+        res.redirect("/");
+    }
     const vazenePrumery = prumery(znamky).map((vazenyPrumer) => {
         return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
     }).sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);

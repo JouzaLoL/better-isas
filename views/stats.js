@@ -111,7 +111,12 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                 .from(document.querySelectorAll("#znamky tr"))
                 .groupBy();
 
-            const html = flatten(Object.values(groups)).map((tr) => tr.outerHTML).join("");
+            const html = flatten(Object
+                .keys(groups)
+                .map((key) => {
+                    return groups[key];
+                }))
+                .map((tr) => tr.outerHTML).join("");
             document.querySelector("#znamky").innerHTML = html;
         });
 
