@@ -6,9 +6,17 @@ const base = require("./views/base");
 const index = require("./views/index");
 
 router.get("/", (req, res) => {
+    const alert = req.query.badlogin ? `<div class="col">
+    <div class="alert alert-danger" role="alert">
+        Špatné uživatelské jméno nebo heslo.
+    </div>
+</div>` : "";
+
+    const announcement = `<div>Omlouváme se za dočasnou nedostupnost aplikace, v připadě jakýchkoliv dalších problémů prosím
+    <a href="http://m.me/jovacek">pište</a>.</div>`;
     res.send(
         base(
-            index()
+            index(alert, announcement)
         )
     );
 });
@@ -56,16 +64,26 @@ router.post("/stats", async (req, res) => {
 });
 
 router.get("/stats", async (req, res) => {
+    /* Read auth cookie */
     const authCookie = Buffer.from(req.cookies["auth"], "base64").toString("ascii");
+
+    /* If not logged in, redirect to login page */
     if (!authCookie) {
         res.redirect("/");
+        return;
     }
+
+    /* Parse auth cookie into auth tuple */
     const auth = JSON.parse(authCookie);
+
+    /* Get znamky */
     // @ts-ignore
     const znamky = await parser(...auth);
-    // TODO: Redirect to a bad login info page
-    if (!znamky) {
-        res.redirect("/");
+
+    /* If no znamky, login details are incorrect */
+    if (!znamky.length) {
+        res.redirect("/?badlogin=true");
+        return;
     }
     const vazenePrumery = prumery(znamky).map((vazenyPrumer) => {
         return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };

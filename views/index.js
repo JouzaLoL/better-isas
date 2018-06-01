@@ -1,10 +1,13 @@
-module.exports = () => `<div class="container shadow-sm">
-    <div class="row shadow-sm" style="color: #33528B">
+module.exports = (alert = "", announcement = "") => `<div class="container shadow-sm">
+    <div class="row shadow-sm mb-3" style="color: #33528B">
         <div class="col pl-2">
             <h1 class="mb-0 p-1 font-weight-bold text-center">Better iSAS</h1>
         </div>
     </div>
-    <div class="row pt-3">
+    <div class="row">
+        ${alert}
+    </div>
+    <div class="row">
         <div class="col-6">
             <form action="/stats" method="post">
                 <div class="form-group">
@@ -18,11 +21,14 @@ module.exports = () => `<div class="container shadow-sm">
                 </div>
             </form>
         </div>
-        <div class="col-6">
-            <div class="font-weight-bold">Omlouváme se za dočasnou nedostupnost aplikace, v připadě jakýchkoliv dalších problémů <a href="http://m.me/jovacek">pište</a>.</div>
-
+        <div class="col-6 p-0">
+            ${announcement}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
             <blockquote class="blockquote">
-                <p class="mb-0" style="color: gray; font-style: italic;">Libertatem informationis</p>
+                <p class="mb-0 text-secondary font-italic font-weight-light">Libertatem informationis</p>
             </blockquote>
         </div>
     </div>
