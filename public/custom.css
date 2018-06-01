@@ -1,4 +1,9 @@
+/* Font */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin-ext');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
 
 body {
     background: #F5F7FE;
@@ -8,13 +13,7 @@ body {
     background: white;
 }
 
-* {
-    font-family: 'Roboto', sans-serif;
-}
-
-table.table {
-    margin-bottom: 0;
-}
+/* Cards */
 
 .card-title {
     padding: 0.75rem;
@@ -27,16 +26,32 @@ table.table {
     padding: 0;
 }
 
+
+/* Color representation of marks and averages */
 .td-color {
     background-repeat: no-repeat;
     background-position: 100% 100%;
     background-size: 5% 100%;
 }
 
+/* Table stuff */
 tr {
     white-space: nowrap;
 }
 
 th {
     font-weight: normal;
+}
+
+table.table {
+    margin-bottom: 0;
+}
+
+/* Zvýraznění známek a znevýraznění vah */
+#znamky td:nth-child(3) {
+    font-weight: bold;
+}
+
+#znamky td:nth-child(4)::before {
+    content: "Z";
 }
