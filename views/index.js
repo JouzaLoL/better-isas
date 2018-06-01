@@ -19,6 +19,8 @@ module.exports = () => `<div class="container shadow-sm">
             </form>
         </div>
         <div class="col-6">
+            <div class="font-weight-bold">Omlouváme se za dočasnou nedostupnost aplikace, v připadě jakýchkoliv dalších problémů <a href="http://m.me/jovacek">pište</a>.</div>
+
             <blockquote class="blockquote">
                 <p class="mb-0" style="color: gray; font-style: italic;">Libertatem informationis</p>
             </blockquote>
