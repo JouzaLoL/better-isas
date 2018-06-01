@@ -32,20 +32,6 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                     </div>
                 </div>
             </div>
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="card-title p-2" style="border-top: solid 3px #33528B">
-                        <h5 class="m-0">Ostatní</h5>
-                    </div>
-                    <div class="card-text">
-                        <table class="table table-sm table-hover table-striped table-borderless">
-                            <tbody>
-                                <td>Vyznamenání: ${misc.vyznamenani ? "&#10004;" : "&#10060;"}</td>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="col-sm-6">
             <div class="card shadow-sm mb-4">
@@ -73,6 +59,20 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                             </thead>
                             <tbody id="znamky">
                                 ${znamkyRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="card-title p-2" style="border-top: solid 3px #33528B">
+                        <h5 class="m-0">Ostatní</h5>
+                    </div>
+                    <div class="card-text">
+                        <table class="table table-sm table-hover table-striped table-borderless">
+                            <tbody>
+                                <td>Vyznamenání: ${misc.vyznamenani ? "&#10004;" : "&#10060;"}</td>
                             </tbody>
                         </table>
                     </div>
