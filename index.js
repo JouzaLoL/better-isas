@@ -1,3 +1,6 @@
+const fs = require("fs");
+const https = require("https");
+const http = require("http");
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
@@ -27,4 +30,18 @@ app.use(function onError(err, req, res, next) {
 });
 
 /* Start the server */
-app.listen(80, () => console.log("Better-iSAS server listening on port 80"));
+
+/* HTTPS Options */
+const options = {
+    key: fs.readFileSync("./sslcert/domain-key.pem"),
+    cert: fs.readFileSync("./sslcert/domain-crt.pem")
+};
+
+const serverStarted = () => {
+    console.log("> Better iSAS started succesfully");
+};
+
+http.createServer(app).listen(80, serverStarted);
+https.createServer(options, app).listen(443, serverStarted);
+
+
