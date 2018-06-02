@@ -11,17 +11,24 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
 
         gtag('config', 'UA-111548982-2');
     </script>
+
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="iSAS with a fresh look and much-needed features">
+
     <title>${require("./common").randomTitle()}</title>
-    <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     <link rel="stylesheet" href="/custom.css">
+    
     <!-- Head interpolation -->
     ${head}
+    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=WGLpp0AGmP">
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=WGLpp0AGmP">
@@ -32,6 +39,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/icons/browserconfig.xml?v=WGLpp0AGmP">
     <meta name="theme-color" content="#385088">
+    
     <!-- Facebook OpenGraph -->
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">
