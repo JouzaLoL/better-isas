@@ -59,7 +59,7 @@ const interpolate = require("color-interpolate");
 
 router.post("/stats", async (req, res) => {
     const cookieString = Buffer.from(JSON.stringify([req.body.username, req.body.password])).toString("base64");
-    res.cookie("auth", cookieString, { maxAge: 24 * 60 * 60 * 1000 });
+    res.cookie("auth", cookieString, { maxAge: 7 * 24 * 60 * 60 * 1000 });
     res.redirect("/stats");
 });
 
@@ -85,15 +85,20 @@ router.get("/stats", async (req, res) => {
         res.redirect("/?badlogin=true");
         return;
     }
-    const vazenePrumery = prumery(znamky).map((vazenyPrumer) => {
-        return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
-    }).sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
+
+    /* Calculate weighted averages */
+    const vazenePrumery = prumery(znamky)
+        .map((vazenyPrumer) => {
+            return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
+        })
+        .sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
 
     /* Represent a prumer with color ranging from white for 1 to red for 5 */
     const prumerToRgb = (prumer) => {
         return interpolate(["white", "red"])((prumer - 1) / 4);
     };
 
+    /* Generate HTML for prumery */
     const prumeryRows = vazenePrumery
         .map((prumer) => `<tr>
     <td>${prumer.predmet}</td>
@@ -102,22 +107,41 @@ router.get("/stats", async (req, res) => {
 </tr>`)
         .join("");
 
+    /* New marks logic */
+    const lastMark = req.cookies["lastMark"];
+    let lastIndex;
+    /* No marks cookie, create one */
+    if (!lastMark) {
+        res.cookie("lastMark", znamky[0], { maxAge: 900000000 });
+        lastIndex = znamky.length - 1;
+    } else {
+        lastIndex = znamky.findIndex((znamka) => {
+            return JSON.stringify(znamka) === JSON.stringify(lastMark);
+        });
+        res.cookie("lastMark", znamky[0], { maxAge: 900000000 });
+    }
+
+    const isNewMark = (znamka) => {
+        return znamky.indexOf(znamka) < lastIndex;
+    };
+
+    /* Generate HTML for znamky */
     const znamkyRows = znamky
         .map((znamka) => `<tr>
     <td>${znamka.datum}</td>
     <td>${znamka.predmet}</td>
-    <td>${znamka.znamka}</td>
+    <td>${znamka.znamka}${isNewMark(znamka) ? `<span class="newMarkDot"> &#9679;</span>` : ""}</td>
     <td>${znamka.vaha}</td>
     <td>${znamka.tema}</td>
 </tr>`)
         .join("");
 
+    /* Put it all together */
     const template = base(
         require("./views/stats")(znamkyRows, prumeryRows, {
             isVyznamenani: isVyznamenani(znamky)
         })
     );
-
     res.send(template);
 });
 
