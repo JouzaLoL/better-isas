@@ -47,7 +47,7 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
                                 ">
                                 <tr>
                                     <th scope="col" id="datum">
-                                        <button class="btn btn-outline-light btn-block active btn-sm">Datum</button>
+                                        <button class="btn btn-outline-light btn-block active btn-sm focus">Datum</button>
                                     </th>
                                     <th scope="col" id="predmet">
                                         <button class="btn btn-outline-light btn-block active btn-sm">Předmět</button>
@@ -107,6 +107,9 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
         window.puvodniHTML = document.querySelector("#znamky").innerHTML;
 
         document.querySelector("#predmet").addEventListener("click", () => {
+            // Remove default selected style from Datum button
+            document.querySelector("#datum > button").classList.remove("focus");
+            
             const groups = Array
                 .from(document.querySelectorAll("#znamky tr"))
                 .groupBy();
