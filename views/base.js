@@ -45,7 +45,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <meta property="og:image:height" content="279">
     <meta property="og:title" content="Better iSAS">
     <meta property="og:url" content="http://betterisas.openode.io">
-    <meta property="og:image" content="http://betterisas.openode.io/icons/og-image.jpg">
+    <meta property="og:image" content="/icons/og-image.jpg">
     <meta property="og:description" content="iSAS with a fresh look and much-needed features">
 </head>
 
