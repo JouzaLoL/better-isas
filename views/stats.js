@@ -109,17 +109,32 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
         document.querySelector("#predmet").addEventListener("click", () => {
             // Remove default selected style from Datum button
             document.querySelector("#datum > button").classList.remove("focus");
-            
+
             const groups = Array
                 .from(document.querySelectorAll("#znamky tr"))
                 .groupBy();
 
-            const html = flatten(Object
-                .keys(groups)
-                .map((key) => {
-                    return groups[key];
-                }))
-                .map((tr) => tr.outerHTML).join("");
+            const html = flatten(
+                Object
+                    .keys(groups)
+                    .map((key, index) => {
+                        if (index % 2) {
+                            return groups[key]
+                                .map((tr) => {
+                                    tr.classList.add("predmet_even");
+                                    return tr;
+                                });
+                        } else {
+                            return groups[key]
+                                .map((tr) => {
+                                    tr.classList.add("predmet_odd");
+                                    return tr;
+                                });
+                        }
+                    })
+            )
+                .map((tr) => tr.outerHTML)
+                .join("");
             document.querySelector("#znamky").innerHTML = html;
         });
 

@@ -55,3 +55,12 @@ table.table {
 #znamky td:nth-child(4)::before {
     content: "Z";
 }
+
+/* Oddělení předmětů pomocí pozadí */
+.predmet_odd {
+    background-color: rgba(0,0,0,.05);
+}
+
+.predmet_even {
+    background-color: rgba(0,0,0,0) !important;
+}
