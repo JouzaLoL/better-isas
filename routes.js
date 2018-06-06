@@ -6,6 +6,11 @@ const base = require("./views/base");
 const index = require("./views/index");
 
 router.get("/", (req, res) => {
+    /* If user is already logged in, redirect directly to stats */
+    if (req.cookies["auth"]) {
+        res.redirect("/stats");
+    }
+    
     const alert = req.query.badlogin ? `<div class="col">
     <div class="alert alert-danger" role="alert">
         Špatné uživatelské jméno nebo heslo.
@@ -65,7 +70,7 @@ router.post("/stats", async (req, res) => {
 
 router.get("/stats", async (req, res) => {
     /* Read auth cookie */
-    const authCookie = Buffer.from(req.cookies["auth"], "base64").toString("ascii");
+    const authCookie = req.cookies["auth"];
 
     /* If not logged in, redirect to login page */
     if (!authCookie) {
@@ -73,8 +78,10 @@ router.get("/stats", async (req, res) => {
         return;
     }
 
-    /* Parse auth cookie into auth tuple */
-    const auth = JSON.parse(authCookie);
+    const authBuffer = Buffer.from(authCookie, "base64").toString("ascii");
+
+    /* Parse auth cookie into an auth tuple */
+    const auth = JSON.parse(authBuffer);
 
     /* Get znamky */
     // @ts-ignore
