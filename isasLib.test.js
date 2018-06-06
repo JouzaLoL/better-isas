@@ -22,7 +22,7 @@ describe("iSAS Lib", function () {
                 return expect(znamka.datum).to.be.a("string")
                     && expect(znamka.datum.length).to.be.at.least(5)
                     && expect(znamka.vaha).to.be.a("number")
-                    && expect(znamka.znamka).to.be.a("number")
+                    && expect(znamka.znamka).to.be.oneOf(["1", "2", "3", "4", "5", "A", "N"])
                     && expect(znamka.predmet).to.be.a("string");
             });
         });
