@@ -16,11 +16,11 @@ const request = requestProm.defaults({
  * @returns Znamky
  */
 async function getZnamky(username, password) {
-    /* Create a cookie jar on every session to prevent cookie leaks */
-    const cookieJar = requestProm.jar();
-
-    /* Log into iSAS to obtain session cookie */
     try {
+        /* Create a cookie jar on every session to prevent cookie leaks */
+        const cookieJar = requestProm.jar();
+
+        /* Log into iSAS to obtain session cookie */
         await request("/prihlasit.php", {
             method: "post",
             jar: cookieJar,
