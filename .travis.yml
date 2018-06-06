@@ -8,11 +8,6 @@ install: npm install
 script:
   - npm test
 
-after_success:
-  - openode ci-conf $OPENODE_TOKEN isas.zlepsi.me
-  - openode sync
-  - openode restart
-
 cache:
   directories:
     - node_modules
