@@ -9,7 +9,7 @@ script:
   - npm test
 
 after_success:
-  - npx openode deploy
+  - npx openode deploy -t $OPENODE_TOKEN -s isas.zlepsi.me
 
 cache:
   directories:
