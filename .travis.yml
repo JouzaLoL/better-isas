@@ -9,7 +9,7 @@ script:
   - npm test
 
 after_success:
-  - openode deploy
+  - npx openode deploy
 
 cache:
   directories:
