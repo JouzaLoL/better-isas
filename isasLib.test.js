@@ -16,7 +16,7 @@ describe("iSAS Lib", function () {
         // @ts-ignore
         const znamky = await isasLib(...auth);
 
-        expect(znamky.length).to.be.at.least(1); /* Might fail at start of year */
+        expect(znamky.length).to.be.at.least(1); /* Might fail on start of year */
         expect(znamky).to.satisfy((znamkyArray) => {
             return znamkyArray.every((znamka) => {
                 return expect(znamka.datum).to.be.a("string")
