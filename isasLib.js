@@ -20,22 +20,26 @@ async function getZnamky(username, password) {
     const cookieJar = requestProm.jar();
 
     /* Log into iSAS to obtain session cookie */
-    await request("/prihlasit.php", {
-        method: "post",
-        jar: cookieJar,
-        formData: {
-            "login-isas-username": username,
-            "login-isas-password": password,
-            "login-isas-send": "isas-send"
-        }
-    });
+    try {
+        await request("/prihlasit.php", {
+            method: "post",
+            jar: cookieJar,
+            formData: {
+                "login-isas-username": username,
+                "login-isas-password": password,
+                "login-isas-send": "isas-send"
+            }
+        });
 
-    const resBuffer = await request("/prubezna-klasifikace.php", {
-        jar: cookieJar,
-        encoding: null
-    });
+        const resBuffer = await request("/prubezna-klasifikace.php", {
+            jar: cookieJar,
+            encoding: null
+        });
 
-    return parsePrubeznaKlasifikace(decodeWin1250(resBuffer));
+        return parsePrubeznaKlasifikace(decodeWin1250(resBuffer));
+    } catch (error) {
+        throw error;
+    }
 }
 
 /**
@@ -62,7 +66,7 @@ function parsePrubeznaKlasifikace(html) {
 
     return markTrs
         .map(parseTr)
-        /* Filter out letters */
+        /* Filter out letters (A, N) */
         .filter((znamka) => !isNaN(znamka.znamka));
 }
 

@@ -32,7 +32,7 @@ app.use(function onError(err, req, res, next) {
     res.end(res.sentry + "\n");
 });
 
-/* HTTPS Options */
+/* HTTPS */
 const options = {
     key: fs.readFileSync("./sslcert/domain-key.pem"),
     cert: fs.readFileSync("./sslcert/domain-crt.pem")
