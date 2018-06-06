@@ -19,8 +19,17 @@ router.get("/", (req, res) => {
     </div>
 </div>` : "";
 
-    const announcement = `<div>Omlouváme se za dočasnou nedostupnost aplikace, v připadě jakýchkoliv dalších problémů prosím
-    <a href="http://m.me/jovacek">pište</a>.</div>`;
+    const announcement = `<div>
+    <h6>Funkce</h6>
+    <ul>
+        <li>
+            <b>Vážené průměry</b>
+        </li>
+        <li>Trvalé přihlášení</li>
+        <li>Zvýraznění nových známek</li>
+        <li>Vše ze starého iSASu</li>
+    </ul>
+</div>`;
     res.send(
         base(
             index(alert, announcement)
@@ -28,7 +37,15 @@ router.get("/", (req, res) => {
     );
 });
 
-function prumery(znamky) {
+function filterOutLetters(marks) {
+    /* Filter out letters (A, N) */
+    return marks.filter((znamka) => !isNaN(znamka.znamka)).map((z) => {
+        return Object.assign(z, { znamka: parseInt(z.znamka) }); 
+    });
+}
+
+function prumery(z) {
+    const znamky = filterOutLetters(z);
     const predmety = Array.from(new Set(znamky.map((znamka) => znamka.predmet)));
     const result = predmety.map((predmet) => {
         const znamkyZPredmetu = znamky
@@ -65,8 +82,9 @@ function isVyznamenani(znamky) {
 const interpolate = require("color-interpolate");
 
 router.post("/stats", async (req, res) => {
+    const REMEMBER_AUTH_PERIOD = 7 * 24 * 60 * 60 * 1000;
     const cookieString = Buffer.from(JSON.stringify([req.body.username, req.body.password])).toString("base64");
-    res.cookie("auth", cookieString, { maxAge: 7 * 24 * 60 * 60 * 1000 });
+    res.cookie("auth", cookieString, { maxAge: REMEMBER_AUTH_PERIOD });
     res.redirect("/stats");
 });
 
