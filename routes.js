@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
     /* If user is already logged in, redirect directly to stats */
     if (req.cookies["auth"]) {
         res.redirect("/stats");
+        return;
     }
 
     const alert = req.query.badlogin ? `<div class="col">
