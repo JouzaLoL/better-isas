@@ -8,6 +8,9 @@ install: npm install
 script:
   - npm test
 
+after_success:
+  - openode deploy
+
 cache:
   directories:
     - node_modules
