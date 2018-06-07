@@ -32,5 +32,8 @@
 		"no-constant-condition": "off",
 		"no-console": "off",
 		"semi": "error"
-	}
+	},
+	"plugins": [
+		"cypress"
+	]
 }
