@@ -1,6 +1,4 @@
 /// <reference types="Cypress" />
-/* Load in username and password from local env file */
-require("dotenv").load({ path: "../../.env" });
 
 describe("Index page", () => {
     before(() => {
@@ -12,9 +10,9 @@ describe("Index page", () => {
     });
 
     it("should log in", () => {
-        cy.get("form[action='/stats'] #usr").type(process.env["ISAS_USERNAME"]);
-        cy.get("form[action='/stats'] #pwd").type(process.env["ISAS_PASSWORD"]);
-        cy.get("form[action='/stats'] button[type='submit']").click();
+        cy.get("#usr").type(Cypress.env("ISAS_USERNAME"));
+        cy.get("#pwd").type(Cypress.env("ISAS_PASSWORD"));
+        cy.get("button[type='submit']").click();
         cy.location().should("include", "/stats");
     });
 });
