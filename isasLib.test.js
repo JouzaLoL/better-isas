@@ -1,12 +1,11 @@
 const isasLib = require("./isasLib");
 const { expect } = require("chai");
 
-if (process.env.NODE_ENV !== "production") {
-    require("dotenv").load();
-}
+require("dotenv").load();
 
 describe("iSAS Lib", function () {
     this.slow(5000);
+
     it("should log in and get and parse prubezna klasifikace", async () => {
         const auth = [process.env["ISAS_USERNAME"], process.env["ISAS_PASSWORD"]];
         if (!auth || auth.some((d) => d == undefined)) {
@@ -26,5 +25,13 @@ describe("iSAS Lib", function () {
                     && expect(znamka.predmet).to.be.a("string");
             });
         });
+    });
+
+    it("should return no marks when login failed", async () => {
+        const auth = ["DFDF", "asdfsdf"];
+        // @ts-ignore
+        const znamky = await isasLib(...auth);
+
+        expect(znamky.length).to.equal(0);
     });
 });
