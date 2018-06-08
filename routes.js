@@ -31,6 +31,7 @@ router.get("/", (req, res) => {
                 index(alert, announcement)
             )
         );
+        req.clearCookie("auth");
         return;
     }
 
