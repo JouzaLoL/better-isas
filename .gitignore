@@ -1,6 +1,10 @@
 node_modules
 .env
+cypress.env.json
 sslcert
 coverage
 .nyc_output
 .openode
+
+cypress/screenshots
+cypress/videos
