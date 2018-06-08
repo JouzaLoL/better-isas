@@ -7,18 +7,6 @@ const base = require("./views/base");
 const index = require("./views/index");
 
 router.get("/", (req, res) => {
-    /* If user is already logged in, redirect directly to stats */
-    if (req.cookies["auth"]) {
-        res.redirect("/stats");
-        return;
-    }
-
-    const alert = req.query.badlogin ? `<div class="col">
-    <div class="alert alert-danger" role="alert">
-        Špatné uživatelské jméno nebo heslo.
-    </div>
-</div>` : "";
-
     const announcement = `<div>
     <h6>Funkce</h6>
     <ul>
@@ -30,9 +18,31 @@ router.get("/", (req, res) => {
         <li>Vše ze starého iSASu</li>
     </ul>
 </div>`;
+
+    /* If user auth is bad, don't redirect to stats */
+    if (req.query.badlogin) {
+        const alert = `<div class="col">
+        <div class="alert alert-danger" role="alert">
+            Špatné uživatelské jméno nebo heslo.
+        </div>
+    </div>`;
+        res.send(
+            base(
+                index(alert, announcement)
+            )
+        );
+        return;
+    }
+
+    /* If user is already logged in, redirect directly to stats */
+    if (req.cookies["auth"]) {
+        res.redirect("/stats");
+        return;
+    }
+
     res.send(
         base(
-            index(alert, announcement)
+            index(announcement)
         )
     );
 });
@@ -40,7 +50,7 @@ router.get("/", (req, res) => {
 function filterOutLetters(marks) {
     /* Filter out letters (A, N) */
     return marks.filter((znamka) => !isNaN(znamka.znamka)).map((z) => {
-        return Object.assign(z, { znamka: parseInt(z.znamka) }); 
+        return Object.assign(z, { znamka: parseInt(z.znamka) });
     });
 }
 
