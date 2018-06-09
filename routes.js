@@ -192,4 +192,9 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
+/* Catch-all: redirect to index */
+router.all("*", (req, res) => {
+    res.redirect("/");
+});
+
 module.exports = router;
