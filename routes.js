@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
             Špatné uživatelské jméno nebo heslo.
         </div>
     </div>`;
-        req.clearCookie("auth");
+        res.clearCookie("auth");
         res.send(
             base(
                 index(alert, announcement)

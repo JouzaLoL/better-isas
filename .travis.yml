@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - stable
-install: npm install && npm install cypress
+install: npm install
 script:
 - npm test
 - npm run ci
