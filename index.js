@@ -40,7 +40,7 @@ const options = {
 
 
 /* Start the server */
-if (process.env.PRODUCTION) {
+if (process.env.PRODUCTION || !process.env.CI) {
     http.createServer(app).listen(80);
     console.log("HTTP Server started");
     https.createServer(options, app).listen(443);

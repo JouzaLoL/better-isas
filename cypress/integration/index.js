@@ -2,6 +2,7 @@
 
 describe("Index page", () => {
     before(() => {
+        this.slow(5000);
         cy.visit("/");
         cy.clearCookies();
     });
