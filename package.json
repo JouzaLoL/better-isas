@@ -12,7 +12,7 @@
     "start": "node index.js",
     "coverage": "nyc report --reporter=html",
     "cy:run": "npx cypress run",
-    "cy:record": "npx cypress run --record --key",
+    "cy:record": "npx cypress run --record",
     "cy:ci": "start-server-and-test start http://localhost:8080 cy:record",
     "cy:local": "start-server-and-test start http://localhost:8080 cy:run"
   },
