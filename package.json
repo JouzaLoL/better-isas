@@ -13,7 +13,8 @@
     "coverage": "nyc report --reporter=html",
     "cy:run": "npx cypress run",
     "cy:record": "npx cypress run --record --key $CYPRESS_RECORD_KEY",
-    "ci": "start-server-and-test start http://localhost:8080 cy:record"
+    "cy:ci": "start-server-and-test start http://localhost:8080 cy:record",
+    "cy:local": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "keywords": [],
   "author": "Josef Vacek",
