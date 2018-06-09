@@ -20,6 +20,6 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_579533767fd6_key -iv $encrypted_579533767fd6_iv
   -in domain-key.pem.enc -out sslcert/domain-key.pem -d
 
--after_success:
+after_success:
 - openode ci-conf $OPENODE_TOKEN isas.zlepsi.me
 - openode deploy
