@@ -1,4 +1,5 @@
 # Better iSAS
+[![Build Status](https://travis-ci.org/JouzaLoL/better-isas.svg?branch=master)](https://travis-ci.org/JouzaLoL/better-isas)
 
 Open-source frontend alternative to the [iSAS](http://isas.gytool.cz) application.
 
@@ -10,12 +11,13 @@ Open-source frontend alternative to the [iSAS](http://isas.gytool.cz) applicatio
 $ npm install
 $ npm start
 ```
-Server will be started on `localhost:80` by default
+Server will be started on `localhost:8080` by default
 
 ## Built With
 
 * [Express](https://expressjs.com/) - web framework
 * [OpeNode](https://www.openode.io/) - top-class hosting with unbeatable prices
+* [Travis CI](https://travis-ci.org) - free CI for open-source projects
 
 ## Contributing
 
