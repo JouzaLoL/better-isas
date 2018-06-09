@@ -9,5 +9,5 @@ cache:
   directories:
   - node_modules
 before_install:
-- openssl aes-256-cbc -K $encrypted_b10a2b124130_key -iv $encrypted_b10a2b124130_iv
+- openssl aes-256-cbc -K $encrypted_579533767fd6_key -iv $encrypted_579533767fd6_iv
   -in domain-key.pem.enc -out sslcert/domain-key.pem -d
