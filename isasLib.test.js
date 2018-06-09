@@ -9,7 +9,7 @@ describe("iSAS Lib", function () {
     it("should log in and get and parse prubezna klasifikace", async () => {
         const auth = [process.env["ISAS_USERNAME"], process.env["ISAS_PASSWORD"]];
         if (!auth || auth.some((d) => d == undefined)) {
-            throw "No user/pass specified in ENV vars";
+            throw new Error("No user/pass specified in ENV vars");
         }
 
         // @ts-ignore
