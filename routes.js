@@ -26,12 +26,12 @@ router.get("/", (req, res) => {
             Špatné uživatelské jméno nebo heslo.
         </div>
     </div>`;
+        req.clearCookie("auth");
         res.send(
             base(
                 index(alert, announcement)
             )
         );
-        req.clearCookie("auth");
         return;
     }
 
@@ -43,7 +43,7 @@ router.get("/", (req, res) => {
 
     res.send(
         base(
-            index(announcement)
+            index("", announcement)
         )
     );
 });

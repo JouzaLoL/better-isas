@@ -38,10 +38,15 @@ const options = {
     cert: fs.readFileSync("./sslcert/domain-crt.pem")
 };
 
-const serverStarted = () => {
-    console.log("> Better iSAS started succesfully");
-};
 
 /* Start the server */
-http.createServer(app).listen(80, serverStarted);
-https.createServer(options, app).listen(443, serverStarted);
+if (process.env.PRODUCTION) {
+    http.createServer(app).listen(80);
+    console.log("HTTP Server started");
+    https.createServer(options, app).listen(443);
+    console.log("HTTPS Server started");
+} else {
+    console.log("Dev Server started");
+    http.createServer(app).listen(8080);
+}
+

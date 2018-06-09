@@ -12,7 +12,7 @@
     "start": "node index.js",
     "coverage": "nyc report --reporter=html",
     "cy:run": "npx cypress run",
-    "ci": "start-server-and-test start http://localhost:80 cy:run"
+    "ci": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "keywords": [],
   "author": "Josef Vacek",
