@@ -1,10 +1,17 @@
 language: node_js
+# 
 node_js:
 - stable
+
+before_install:
+  - npm i -g npm
+
 install: npm ci
+
 script:
 - npm test
 - npm run ci
+
 cache:
   directories:
   - node_modules
