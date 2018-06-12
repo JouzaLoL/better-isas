@@ -48,50 +48,6 @@ router.get("/", (req, res) => {
     );
 });
 
-function filterOutLetters(marks) {
-    /* Filter out letters (A, N) */
-    return marks.filter((znamka) => !isNaN(znamka.znamka)).map((z) => {
-        return Object.assign(z, { znamka: parseInt(z.znamka) });
-    });
-}
-
-function prumery(z) {
-    const znamky = filterOutLetters(z);
-    const predmety = Array.from(new Set(znamky.map((znamka) => znamka.predmet)));
-    const result = predmety.map((predmet) => {
-        const znamkyZPredmetu = znamky
-            .filter((znamka) => znamka.predmet === predmet);
-        const vazenySoucet = znamkyZPredmetu
-            .reduce((soucet, curr) => {
-                return soucet + curr.znamka * curr.vaha;
-            }, 0);
-
-        const soucetVah = znamkyZPredmetu
-            .reduce((soucet, curr) => {
-                return soucet + curr.vaha;
-            }, 0);
-
-        const vazenyPrumer = vazenySoucet / soucetVah;
-        return {
-            vazenyPrumer: Number(vazenyPrumer.toFixed(2)),
-            predmet
-        };
-    });
-
-    return result;
-}
-
-function isVyznamenani(znamky) {
-    const averages = prumery(znamky).map((vazenyPrumer) => {
-        return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
-    }).sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
-    const numberOf2s = averages.filter((avg) => avg.vyslednaZnamka === 2).length;
-    const numberOf1s = averages.filter((avg) => avg.vyslednaZnamka === 2).length;
-    return averages.every((avg) => avg.vyslednaZnamka <= 2) && numberOf1s > numberOf2s;
-}
-
-const interpolate = require("color-interpolate");
-
 router.post("/stats", async (req, res) => {
     const REMEMBER_AUTH_PERIOD = 7 * 24 * 60 * 60 * 1000;
     const cookieString = Buffer.from(JSON.stringify([req.body.username, req.body.password])).toString("base64");
@@ -126,29 +82,25 @@ router.get("/stats", async (req, res) => {
         }
 
         /* Calculate weighted averages */
-        const vazenePrumery = prumery(znamky)
+        const vazenePrumery = isas.prumery(znamky)
             .map((vazenyPrumer) => {
                 return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
             })
             .sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
 
-        /* Represent a prumer with color ranging from white for 1 to red for 5 */
-        const prumerToRgb = (prumer) => {
-            return interpolate(["white", "red"])((prumer - 1) / 4);
-        };
-
         /* Generate HTML for prumery */
         const prumeryRows = vazenePrumery
             .map((prumer) => `<tr>
     <td>${prumer.predmet}</td>
-    <td class="td-color" style="background-image: linear-gradient(to left, ${prumerToRgb(prumer.vazenyPrumer)} 0%, ${prumerToRgb(prumer.vazenyPrumer)} 100%);">${prumer.vazenyPrumer}</td>
-    <td class="td-color" style="background-image: linear-gradient(to left, ${prumerToRgb(prumer.vyslednaZnamka)} 0%, ${prumerToRgb(prumer.vyslednaZnamka)} 100%);">${prumer.vyslednaZnamka}</td>
+    <td class="td-color" style="background-image: linear-gradient(to left, ${isas.prumerToRgb(prumer.vazenyPrumer)} 0%, ${isas.prumerToRgb(prumer.vazenyPrumer)} 100%);">${prumer.vazenyPrumer}</td>
+    <td class="td-color" style="background-image: linear-gradient(to left, ${isas.prumerToRgb(prumer.vyslednaZnamka)} 0%, ${isas.prumerToRgb(prumer.vyslednaZnamka)} 100%);">${prumer.vyslednaZnamka}</td>
 </tr>`)
             .join("");
 
         /* New marks logic */
         const lastMark = req.cookies["lastMark"];
         let lastIndex;
+
         /* No marks cookie, create one */
         if (!lastMark) {
             res.cookie("lastMark", znamky[0], { maxAge: 900000000 });
@@ -178,13 +130,15 @@ router.get("/stats", async (req, res) => {
         /* Put it all together */
         const template = base(
             require("./views/stats")(znamkyRows, prumeryRows, {
-                isVyznamenani: isVyznamenani(znamky)
+                isVyznamenani: isas.isVyznamenani(znamky)
             })
         );
 
-        /* Write iSAS sesionCookie */
-        const sessionCookie = cookieJar.getCookies("http://isas.gytool.cz")[0].value;
-        res.cookie("__isas_ses_ctl", sessionCookie);
+        isas
+            .logIn({ username: auth[0], password: auth[1] })
+            .then((cJ) => {
+                isas.getDetail(znamky[0].link, cJ);
+            });
 
         /* Send rendered HTML */
         res.send(template);
