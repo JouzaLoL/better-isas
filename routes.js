@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const parser = require("./isasLib");
+const isas = require("./isasLib");
 
 const base = require("./views/base");
 const index = require("./views/index");
@@ -115,9 +115,9 @@ router.get("/stats", async (req, res) => {
         /* Parse auth cookie into an auth tuple */
         const auth = JSON.parse(authBuffer);
 
-        /* Get znamky */
-        // @ts-ignore
-        const znamky = await parser(...auth);
+        /* Get isas session cookie & znamky */
+        const cookieJar = await isas.logIn({ username: auth[0], password: auth[1] });
+        const znamky = await isas.getZnamky(cookieJar);
 
         /* If no znamky, login details are incorrect */
         if (!znamky.length) {
@@ -181,6 +181,12 @@ router.get("/stats", async (req, res) => {
                 isVyznamenani: isVyznamenani(znamky)
             })
         );
+
+        /* Write iSAS sesionCookie */
+        const sessionCookie = cookieJar.getCookies("http://isas.gytool.cz")[0].value;
+        res.cookie("__isas_ses_ctl", sessionCookie);
+
+        /* Send rendered HTML */
         res.send(template);
     } catch (error) {
         throw error;

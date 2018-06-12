@@ -8,14 +8,30 @@ const request = requestProm.defaults({
     baseUrl: "http://isas.gytool.cz/isas/"
 });
 
+
 /**
- * Log into iSAS and obtain znamky
- * 
- * @param {any} username 
- * @param {any} password 
- * @returns Znamky
+ * Get znamky
+ *
+ * @param {*} cookieJar
+ * @returns
  */
-async function getZnamky(username, password) {
+async function getZnamky(cookieJar) {
+    const resBuffer = await request("/prubezna-klasifikace.php", {
+        jar: cookieJar,
+        encoding: null
+    });
+
+    return parsePrubeznaKlasifikace(decodeWin1250(resBuffer));
+}
+
+
+/**
+ * Log into iSAS
+ *
+ * @param {*} { username, password }
+ * @returns
+ */
+async function logIn({ username, password }) {
     try {
         /* Create a cookie jar on every session to prevent cookie leaks */
         const cookieJar = requestProm.jar();
@@ -31,12 +47,7 @@ async function getZnamky(username, password) {
             }
         });
 
-        const resBuffer = await request("/prubezna-klasifikace.php", {
-            jar: cookieJar,
-            encoding: null
-        });
-
-        return parsePrubeznaKlasifikace(decodeWin1250(resBuffer));
+        return cookieJar;
     } catch (error) {
         throw error;
     }
@@ -68,4 +79,4 @@ function parsePrubeznaKlasifikace(html) {
         .map(parseTr);
 }
 
-module.exports = getZnamky;
+module.exports = { getZnamky, logIn };
