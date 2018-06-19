@@ -69,3 +69,13 @@ table.table {
 .newMarkDot {
     color: #dc3545;
 }
+
+/* Detail histogram */    
+.sloupec {
+    background: #385088;
+    height: 24px !important;
+}
+
+.isas-histogram td {
+    text-align: center;
+}

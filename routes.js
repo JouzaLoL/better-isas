@@ -119,9 +119,12 @@ router.get("/stats", async (req, res) => {
         /* Generate HTML for znamky */
         const znamkyRows = znamky
             .map((znamka) => `<tr>
-    <td>${znamka.datum}</td>
+    <td>
+        <a href="/detail/${znamka.detail}">${znamka.datum}</a>
+    </td>
     <td>${znamka.predmet}</td>
-    <td>${znamka.znamka}${isNewMark(znamka) ? "<span class=\"newMarkDot\"> &#127381;</span>" : ""}</td>
+    <td>${znamka.znamka}${isNewMark(znamka) ? `
+        <span class="newMarkDot"> &#127381;</span>` : ""}</td>
     <td>${znamka.vaha}</td>
     <td>${znamka.tema}</td>
 </tr>`)
@@ -165,7 +168,7 @@ router.get("/detail/:id", async (req, res) => {
     const template = require("./views/base")(
         require("./views/detail")(detail),
         ""
-    );  
+    );
     res.send(template);
 });
 

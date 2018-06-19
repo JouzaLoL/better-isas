@@ -63,8 +63,16 @@ async function getDetail(id, cookieJar) {
 function parseDetail(html) {
     const $ = cheerio.load(html);
 
-    const table = $(".isas-histogram");
-    return $.html(table);
+    $("caption").remove();
+
+    const tableClasses = "table table-sm table-hover table-striped table-borderless";
+    const detaily = $(".isas-karta-polozky").addClass(tableClasses);
+    const histogram = $(".isas-histogram").addClass(tableClasses);
+
+    return {
+        detaily: $.html(detaily),
+        histogram: $.html(histogram)
+    };
 }
 
 /**
@@ -81,9 +89,9 @@ function parsePrubeznaKlasifikace(html) {
     function parseMarkTr(markTr) {
         return {
             datum: markTr.firstChild.firstChild.firstChild.data,
-            link: markTr.firstChild.firstChild.attribs.href,
+            detail: markTr.firstChild.firstChild.attribs.href.split("zaznam=")[1],
             predmet: markTr.children[1].firstChild.data,
-            znamka: markTr.children[2].firstChild.data === "NH" ? "1" : markTr.children[2].firstChild.data,
+            znamka: markTr.children[2].firstChild.data,
             vaha: parseInt(markTr.children[3].firstChild.data.slice(1)),
             tema: markTr.children[4].firstChild ? markTr.children[4].firstChild.data : "",
             ucitel: markTr.children[5].firstChild.data
