@@ -134,17 +134,39 @@ router.get("/stats", async (req, res) => {
             })
         );
 
-        isas
-            .logIn({ username: auth[0], password: auth[1] })
-            .then((cJ) => {
-                isas.getDetail(znamky[0].link, cJ);
-            });
+
 
         /* Send rendered HTML */
         res.send(template);
     } catch (error) {
         throw error;
     }
+});
+
+router.get("/detail/:id", async (req, res) => {
+    /* Read auth cookie */
+    const authCookie = req.cookies["auth"];
+
+    /* If not logged in, redirect to login page */
+    if (!authCookie) {
+        res.redirect("/");
+        return;
+    }
+
+    const authBuffer = Buffer.from(authCookie, "base64").toString("ascii");
+
+    /* Parse auth cookie into an auth tuple */
+    const auth = JSON.parse(authBuffer);
+
+    /* Get isas session cookie & detail */
+    const cookieJar = await isas.logIn({ username: auth[0], password: auth[1] });
+    const detail = await isas.getDetail(req.params["id"], cookieJar);
+
+    const template = require("./views/base")(
+        require("./views/detail")(detail),
+        ""
+    );  
+    res.send(template);
 });
 
 router.get("/logout", (req, res) => {

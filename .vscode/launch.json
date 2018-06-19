@@ -7,6 +7,16 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "nodemon",
+            "runtimeExecutable": "nodemon",
+            "program": "${workspaceFolder}/index.js",
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Mocha Tests",
             "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
             "args": [

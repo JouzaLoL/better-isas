@@ -48,12 +48,13 @@ async function getZnamky(cookieJar) {
     }
 }
 
-async function getDetail(url, cookieJar) {
+async function getDetail(id, cookieJar) {
     try {
-        const html = await request(url, {
-            jar: cookieJar
+        const resBuffer = await request("/prubezna-klasifikace.php?&zaznam=" + id, {
+            jar: cookieJar,
+            encoding: null
         });
-        return parseDetail(html);
+        return parseDetail(decodeWin1250(resBuffer));
     } catch (error) {
         throw error;
     }
@@ -63,7 +64,7 @@ function parseDetail(html) {
     const $ = cheerio.load(html);
 
     const table = $(".isas-histogram");
-    return table;
+    return $.html(table);
 }
 
 /**
