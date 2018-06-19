@@ -4,8 +4,7 @@ node_js:
 - stable
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_579533767fd6_key -iv $encrypted_579533767fd6_iv
-  -in domain-key.pem.enc -out sslcert/domain-key.pem -d
+  - openssl aes-256-cbc -K $encrypted_579533767fd6_key -iv $encrypted_579533767fd6_iv -in domain-key.pem.enc -out sslcert/domain-key.pem -d
   - npm i -g npm
 
 install: npm install && npm install cypress
