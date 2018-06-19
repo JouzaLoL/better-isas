@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:8080",
   "chromeWebSecurity": false,
+  "videoUploadOnPasses": false,
   "projectId": "1x6c37"
 }
