@@ -32,8 +32,24 @@ describe("Index page", () => {
         cy.get(".newMarkDot").should("not.exist");
     });
 
+    it("should display detail", () => {
+        cy.get("#znamky > tr:nth-child(1) > td:nth-child(1) > a").click();
+        cy.get("body > div > div:nth-child(2) > div:nth-child(2) > div > div > div.card-text > table > tbody > tr:nth-child(1) > td.popis-hodnota");
+        cy.get("body > div > div:nth-child(2) > div:nth-child(1) > div > div > div.card-text > table > tbody > tr:nth-child(1) > td.nazev");
+    });
+
+    it("should go back to stats from detail", () => {
+        cy.get("a[href='/stats']").click();
+        cy.location().then((loc) => {
+            expect(loc.pathname).to.equal("/stats");
+        });
+    });
+
     it("should log out", () => {
         cy.get("a[href='/logout']").click();
+        cy.location().then((loc) => {
+            expect(loc.pathname).to.equal("/");
+        });
         cy.getCookie("auth").should("not.exist");
     });
 
