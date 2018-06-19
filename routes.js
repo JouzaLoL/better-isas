@@ -41,17 +41,9 @@ router.get("/", (req, res) => {
         return;
     }
 
-    const isasBugAlert = `<div class="col">
-    <div class="alert alert-warning" role="alert">
-    Na původním iSASu se aktuálně známka 1 zobrazuje jako "NH".
-    Bohužel nevíme, zda-li jde o záměr nebo o chybu.
-    Zde ji zobrazujeme stále jako 1 a je tak s ní počítáno i v průměrech.
-    </div>
-</div>`;
-
     res.send(
         base(
-            index(isasBugAlert, announcement)
+            index("", announcement)
         )
     );
 });
