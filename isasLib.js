@@ -57,7 +57,7 @@ function parsePrubeznaKlasifikace(html) {
         return {
             datum: markTr.firstChild.firstChild.firstChild.data,
             predmet: markTr.children[1].firstChild.data,
-            znamka: markTr.children[2].firstChild.data === "NH" ? 1 : markTr.children[2].firstChild.data,
+            znamka: markTr.children[2].firstChild.data === "NH" ? "1" : markTr.children[2].firstChild.data,
             vaha: parseInt(markTr.children[3].firstChild.data.slice(1)),
             tema: markTr.children[4].firstChild ? markTr.children[4].firstChild.data : "",
             ucitel: markTr.children[5].firstChild.data
