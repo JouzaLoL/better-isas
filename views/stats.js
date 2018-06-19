@@ -7,6 +7,15 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
         </div>
     </div>
     <div class="row">
+        <div class="col">
+            <div class="alert alert-warning" role="alert">
+                Na původním iSASu se aktuálně známka 1 zobrazuje jako "NH".
+                Bohužel nevíme, zda-li jde o záměr nebo o chybu.
+                Zde ji zobrazujeme stále jako 1 a je tak s ní počítáno i v průměrech.
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-sm-6">
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
