@@ -61,11 +61,13 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
                 <div class="inner-spin"></div>
             </div>
         </div>
-    </div>\`;
+    </div>\`; 
+        const element = document.createElement("div")
+        element.classList.add("loadingWrapper");
+        element.classList.add("animated");
+        element.classList.add("fadeIn");
         window.onbeforeunload = () => {
-            const element = document.createElement("div")
             element.innerHTML = html;
-            element.classList.add("loadingWrapper");
             document.body.appendChild(element);
         };
     </script>
