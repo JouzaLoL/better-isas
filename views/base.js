@@ -25,10 +25,10 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
     <link rel="stylesheet" href="/custom.css">
-    
+
     <!-- Head interpolation -->
     ${head}
-    
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=WGLpp0AGmP">
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=WGLpp0AGmP">
@@ -39,7 +39,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/icons/browserconfig.xml?v=WGLpp0AGmP">
     <meta name="theme-color" content="#385088">
-    
+
     <!-- Facebook OpenGraph -->
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">
@@ -51,6 +51,24 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
 
 <body>
     ${content}
+
+    <script>
+        const html = \`<!-- Page loading indicator -->
+    <div class="spinner">
+        <div class="spinner-wrapper">
+            <div class="rotator">
+                <div class="inner-spin"></div>
+                <div class="inner-spin"></div>
+            </div>
+        </div>
+    </div>\`;
+        window.onbeforeunload = () => {
+            const element = document.createElement("div")
+            element.innerHTML = html;
+            element.classList.add("loadingWrapper");
+            document.body.appendChild(element);
+        };
+    </script>
 </body>
 
 </html>`;
