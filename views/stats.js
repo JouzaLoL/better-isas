@@ -2,8 +2,8 @@
 module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shadow-sm">
     <div class="row shadow-sm mb-3" style="color: #33528B">
         <div class="col pl-2" style="border-top: solid;">
-            <h1 class="animated pulse mb-0 p-1 font-weight-bold text-center float-left">Better iSAS</h1>
-            <a href="/logout" class="float-right float-right btn btn-light" style="margin-top: 10px;">Odhlásit</a>
+            <h1 class="mb-0 p-1 font-weight-bold text-center float-left">Better iSAS</h1>
+            <a href="/logout" class="float-right btn btn-light shade-sm" style="margin-top: 10px;">Odhlásit</a>
         </div>
     </div>
     <div class="row">

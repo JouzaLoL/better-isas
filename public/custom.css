@@ -224,3 +224,13 @@ table.table {
     animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
     animation-delay: 0s;
 }
+
+/* Misc */
+
+.shade {
+    box-shadow: 0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08)
+}
+
+.shade-sm {
+    box-shadow: 0 1px 3px rgba(50,50,93,.15), 0 1px 0 rgba(0,0,0,.02);
+}
