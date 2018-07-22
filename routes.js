@@ -35,6 +35,21 @@ router.get("/", (req, res) => {
         return;
     }
 
+    /* If user auth is bad, don't redirect to stats */
+    if (req.query.nomarks) {
+        const alert = `<div class="col">
+        <div class="alert alert-info" role="alert">
+            Žádné známky k zobrazení.
+        </div>
+    </div>`;
+        res.send(
+            base(
+                index(alert, announcement)
+            )
+        );
+        return;
+    }
+
     /* If user is already logged in, redirect directly to stats */
     if (req.cookies["auth"]) {
         res.redirect("/stats");
@@ -74,6 +89,11 @@ router.get("/stats", async (req, res) => {
         /* Get isas session cookie & znamky */
         const cookieJar = await isas.logIn({ username: auth[0], password: auth[1] });
         const znamky = await isas.getZnamky(cookieJar);
+
+        /* If znamky is null, no znamky yet */
+        if (znamky === null) {
+            res.redirect("/?nomarks=true");
+        }
 
         /* If no znamky, login details are incorrect */
         if (!znamky.length) {

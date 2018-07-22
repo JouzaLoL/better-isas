@@ -84,6 +84,9 @@ function parseDetail(html) {
 function parsePrubeznaKlasifikace(html) {
     const $ = cheerio.load(html);
     const trs = $("#isas-obsah > table > tbody tr");
+    if (trs[0].firstChild.firstChild.data === "Žádné klasifikační záznamy.") {
+        return null;
+    }
     const markTrs = trs.toArray().slice(1);
 
     function parseMarkTr(markTr) {
