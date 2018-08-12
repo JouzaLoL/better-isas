@@ -1,7 +1,13 @@
 /// <reference types="Cypress" />
+const isWithinRange = require("date-fns/is_within_range");
+
 
 describe("Index page", () => {
     before(() => {
+        if (isWithinRange(new Date(), new Date((new Date()).getFullYear(), 6, 0), new Date((new Date()).getFullYear(), 8, 0))) {
+            Cypress.stop();
+            return;
+        }
         cy.visit("/");
         cy.clearCookies();
     });
