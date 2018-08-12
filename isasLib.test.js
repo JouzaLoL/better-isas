@@ -1,10 +1,18 @@
 const isasLib = require("./isasLib");
 const { expect } = require("chai");
+const isWithinRange = require("date-fns/is_within_range");
 
 require("dotenv").load();
 
 describe("iSAS Lib", function () {
     this.slow(10000);
+
+    /* Summer break check */
+    before(() => {
+        if (isWithinRange(new Date(), new Date((new Date()).getFullYear(), 6, 0), new Date((new Date()).getFullYear(), 8, 0))) {
+            process.exit(0);
+        }
+    });
 
     it("should log in and get and parse prubezna klasifikace", async () => {
         const auth = [process.env["ISAS_USERNAME"], process.env["ISAS_PASSWORD"]];
@@ -57,7 +65,7 @@ describe("iSAS Lib", function () {
         const detail = await isasLib.getDetail(znamky[0].detail, cookieJar);
 
         expect(detail.histogram).to.be.a("string");
-        expect(detail.detaily).to.be.a("string");   
+        expect(detail.detaily).to.be.a("string");
         expect(detail.histogram.length).to.be.at.least(20);
         expect(detail.detaily.length).to.be.at.least(20);
     });
