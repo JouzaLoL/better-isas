@@ -9,7 +9,7 @@ describe("iSAS Lib", function () {
 
     /* Summer break check */
     before(() => {
-        if (isWithinRange(new Date(), new Date((new Date()).getFullYear(), 6, 0), new Date((new Date()).getFullYear(), 8, 0))) {
+        if (isWithinRange(new Date(), new Date((new Date()).getFullYear(), 6, 0), new Date((new Date()).getFullYear(), 9, 0))) {
             process.exit(0);
         }
     });
