@@ -35,7 +35,7 @@ router.get("/", (req, res) => {
         return;
     }
 
-    /* If user auth is bad, don't redirect to stats */
+    /* If user auth has no marks, don't redirect to stats */
     if (req.query.nomarks) {
         const alert = `<div class="col">
         <div class="alert alert-info" role="alert">
