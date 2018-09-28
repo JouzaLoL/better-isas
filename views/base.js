@@ -28,7 +28,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
 
     <!-- Head interpolation -->
     ${head}
-    ${require("./ads")}
+    ${require("./ads")()}
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=WGLpp0AGmP">
