@@ -25,6 +25,16 @@ module.exports = (alert = "", announcement = "") => `<div class="container shado
             ${announcement}
         </div>
     </div>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-6t+ed+2i-1n-4w"
+     data-ad-client="ca-pub-1168224081669943"
+     data-ad-slot="5029128614"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     <div class="row">
         <div class="col text-center">
             <blockquote class="blockquote">
