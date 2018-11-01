@@ -32,19 +32,11 @@ app.use(function onError(err, req, res, next) {
     res.end(res.sentry + "\n");
 });
 
-/* HTTPS */
-const options = {
-    key: fs.readFileSync("./sslcert/domain-key.pem"),
-    cert: fs.readFileSync("./sslcert/domain-crt.pem")
-};
-
 
 /* Start the server */
 if (process.env.PRODUCTION) {
     http.createServer(app).listen(80);
     console.log("HTTP Server started");
-    https.createServer(options, app).listen(443);
-    console.log("HTTPS Server started");
 } else {
     console.log("Dev Server started");
     http.createServer(app).listen(8080);
