@@ -36,7 +36,7 @@ if (process.env.NODE_ENV == "development") {
     console.log("Dev Server started");
     http.createServer(app).listen(8080);
 } else {
-    http.createServer(app).listen(80);
+    http.createServer(app).listen(process.env.port || 80);
     console.log("HTTP Server started");
 }
 
