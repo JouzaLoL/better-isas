@@ -2,10 +2,8 @@ language: node_js
 node_js:
 - stable
 before_install:
-- openssl aes-256-cbc -K $encrypted_579533767fd6_key -iv $encrypted_579533767fd6_iv
-  -in domain-key.pem.enc -out sslcert/domain-key.pem -d
-
 - npm i -g npm
+
 install: npm install && npm install cypress
 script:
 - npm test
@@ -14,6 +12,3 @@ cache:
   directories:
   - node_modules
   - "~/.cache"
-after_success:
-- test $TRAVIS_BRANCH = "master" && openode ci-conf $OPENODE_TOKEN isas.zlepsi.me
-  && openode deploy
