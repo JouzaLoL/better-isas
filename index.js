@@ -1,5 +1,3 @@
-const fs = require("fs");
-const https = require("https");
 const http = require("http");
 const express = require("express");
 const app = express();
@@ -34,11 +32,11 @@ app.use(function onError(err, req, res, next) {
 
 
 /* Start the server */
-if (process.env.PRODUCTION) {
-    http.createServer(app).listen(80);
-    console.log("HTTP Server started");
-} else {
+if (process.env.NODE_ENV == "development") {
     console.log("Dev Server started");
     http.createServer(app).listen(8080);
+} else {
+    http.createServer(app).listen(80);
+    console.log("HTTP Server started");
 }
 
