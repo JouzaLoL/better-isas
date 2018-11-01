@@ -32,7 +32,7 @@ app.use(function onError(err, req, res, next) {
 
 
 /* Start the server */
-if (process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV == "development" || process.env.TRAVIS || process.env.CI) {
     console.log("Dev Server started");
     http.createServer(app).listen(8080);
 } else {

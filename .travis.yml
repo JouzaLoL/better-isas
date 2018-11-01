@@ -1,13 +1,16 @@
 language: node_js
 node_js:
 - stable
+
 before_install:
 - npm i -g npm
 
 install: npm install && npm install cypress
+
 script:
 - npm test
 - npm run cy:ci
+
 cache:
   directories:
   - node_modules
