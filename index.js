@@ -24,7 +24,7 @@ app.use(express.static("./public"));
 app.use("/", require("./routes"));
 
 /* Error handlers */
-app.use(Raven.errorHandler());
+// app.use(Raven.errorHandler());
 app.use(function onError(err, req, res, next) {
     res.statusCode = 500;
     res.end(res.sentry + "\n");
@@ -32,11 +32,13 @@ app.use(function onError(err, req, res, next) {
 
 
 /* Start the server */
-if (process.env.NODE_ENV == "development" || process.env.TRAVIS || process.env.CI) {
+if (process.env.NODE_ENV == "development" || process.env.TRAVIS || process.env.CI || process.env.DEBUG == "true") {
     console.log("Dev Server started");
     http.createServer(app).listen(8080);
-} else {
+} else if (process.env.PORT) {
     http.createServer(app).listen(process.env.PORT);
     console.log("HTTP Server started");
+} else {
+    http.createServer(app).listen(8080);
 }
 

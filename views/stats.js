@@ -7,6 +7,18 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
         </div>
     </div>
     <div class="row">
+            <div class="col-sm-12 adsAlert">
+            <div class="alert alert-info">
+            🖥️ Provozní náklady této aplikace jsou financovány přímo z reklam, které vidíte. Každý proklik přidá pár korun, a jakmile jsou výdaje pokryty, reklamy se samy vypnou. Děkujeme, že nás podporujete! 💓 
+            </div>
+            </div>
+        <script>
+        if (Cookies.get('adsAlert')) {
+            document.querySelector('.adsAlert').style.display = 'none';
+        } else {
+            Cookies.set('adsAlert', 'true');
+        }
+        </script>
         <div class="col-sm-6">
             <div class="card shadow-sm mb-4">
                 <div class="card-body">

@@ -12,6 +12,9 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
         gtag('config', 'UA-111548982-2');
     </script>
 
+    <!-- js-cookie -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
     <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
