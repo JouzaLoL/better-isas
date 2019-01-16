@@ -153,7 +153,7 @@ router.get("/stats", async (req, res) => {
         /* Put it all together */
         const template = base(
             require("./views/stats")(znamkyRows, prumeryRows, {
-                isVyznamenani: isas.isVyznamenani(znamky)
+                vyznamenani: isas.isVyznamenani(znamky)
             })
         );
 

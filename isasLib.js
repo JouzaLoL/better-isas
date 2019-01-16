@@ -146,9 +146,11 @@ function prumery(z) {
 }
 
 function isVyznamenani(znamky) {
-    const averages = prumery(znamky).map((vazenyPrumer) => {
-        return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
-    }).sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
+    const averages = prumery(znamky)
+        .map((vazenyPrumer) => {
+            return { ...vazenyPrumer, vyslednaZnamka: Math.round(vazenyPrumer.vazenyPrumer) };
+        })
+        .sort((a, b) => a.vazenyPrumer - b.vazenyPrumer);
     const numberOf2s = averages.filter((avg) => avg.vyslednaZnamka === 2).length;
     const numberOf1s = averages.filter((avg) => avg.vyslednaZnamka === 1).length;
     return averages.every((avg) => avg.vyslednaZnamka <= 2) && numberOf1s > numberOf2s;
