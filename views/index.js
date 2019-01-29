@@ -1,7 +1,7 @@
 module.exports = (alert = "", announcement = "") => `<div class="container shadow-sm">
     <div class="row shadow-sm mb-3" style="color: #33528B">
         <div class="col pl-2" style="border-top: solid;">
-            <h1 class="mb-0 p-1 font-weight-bold text-center">Better iSAS</h1>
+            <h1 class="mb-0 p-1 font-weight-bold text-center">EK</h1>
         </div>
     </div>
     <div class="row">

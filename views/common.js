@@ -1,7 +1,7 @@
 module.exports = {
     randomTitle: function getRandomTitle() {
         const titles = [
-            "Better iSAS",
+            "EK",
             "iSAS but it's actually useful",
             "psst, want some weighted average?",
             "ayySAS"

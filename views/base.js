@@ -47,7 +47,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <!-- Facebook OpenGraph -->
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">
-    <meta property="og:title" content="Better iSAS">
+    <meta property="og:title" content="EK">
     <meta property="og:url" content="https://isas.zlepsi.me">
     <meta property="og:image" content="https://isas.zlepsi.me/icons/og-image.jpg">
     <meta property="og:description" content="iSAS with a fresh look and much-needed features">

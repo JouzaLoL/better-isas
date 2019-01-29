@@ -1,4 +1,4 @@
-# Better iSAS
+# EK
 [![Build Status](https://travis-ci.org/JouzaLoL/better-isas.svg?branch=master)](https://travis-ci.org/JouzaLoL/better-isas)
 
 Open-source frontend alternative to the [iSAS](http://isas.gytool.cz) application.

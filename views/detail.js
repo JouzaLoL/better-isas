@@ -1,7 +1,7 @@
 module.exports = ({ detaily, histogram }) => `<div class="container shadow-sm">
     <div class="row shadow-sm mb-3" style="color: #33528B">
         <div class="col pl-2">
-            <h1 class="animated pulse mb-0 p-1 font-weight-bold text-center float-left">Better iSAS</h1>
+            <h1 class="animated pulse mb-0 p-1 font-weight-bold text-center float-left">EK</h1>
             <a href="/stats" class="float-right float-right btn btn-light" style="margin-top: 10px;">&lt; Zpět</a>
         </div>
     </div>
