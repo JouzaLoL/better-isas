@@ -6,8 +6,8 @@ module.exports = (alert = "", announcement = "") => `<div class="container shado
     </div>
     <div class="row">
         <div class="col-sm-12 adsAlert">
-            <div class="alert alert-info">
-                Vážení uživatelé. Tato aplikace (EK) <i>není</i> oficiální aplikací iSAS. Jde pouze o volitelnou alternativu k <a href="http://isas.gytool.cz">oficiální aplikaci systému iSAS</a>.
+            <div class="alert alert-warning">
+                Vážení uživatelé. Tato aplikace (EK) <i>není</i> <a href="http://isas.gytool.cz">oficiální aplikací systému iSAS</a>. <b> Jde pouze o volitelnou alternativu </b>.
                 Gymnázium, Olomouc - Hejčín se na EK nijak nepodílí. Omlouvám se za vzniklé nedorozumění.
             </div>
         </div>

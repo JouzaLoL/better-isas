@@ -75,6 +75,15 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
             document.body.appendChild(element);
         };
     </script>
+    <div class="container shadow-sm pb-2">
+    <div class="row footer">
+        <div class="col font-weight-light text-center">
+        &copy;  <a href="mailto:vacekj@outlook.com">Josef Vacek</a><br>
+        Tato aplikace není oficiální aplikací iSAS.
+         Používáním této aplikace souhlasíte s poskytnutím svých přihlašovacích údajů serverům EK a jejich dočasným uložením do souboru cookie za účelem poskytování této aplikace.
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>`;
