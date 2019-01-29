@@ -21,7 +21,7 @@ module.exports = (content = "", head = "") => `<!DOCTYPE html>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="iSAS with a fresh look and much-needed features">
 
-    <title>${require("./common").randomTitle()}</title>
+    <title>Elektronická klasifikace</title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
