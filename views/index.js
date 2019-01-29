@@ -5,6 +5,14 @@ module.exports = (alert = "", announcement = "") => `<div class="container shado
         </div>
     </div>
     <div class="row">
+        <div class="col-sm-12 adsAlert">
+            <div class="alert alert-info">
+                Vážení uživatelé. Tato aplikace (EK) <i>není</i> oficiální aplikací iSAS. Jde pouze o volitelnou alternativu k <a href="http://isas.gytool.cz">oficiální aplikaci systému iSAS</a>.
+                Gymnázium, Olomouc - Hejčín se na EK nijak nepodílí. Omlouvám se za vzniklé nedorozumění.
+            </div>
+        </div>
+    </div>
+    <div class="row">
         ${alert}
     </div>
     <div class="row">
@@ -26,20 +34,9 @@ module.exports = (alert = "", announcement = "") => `<div class="container shado
         </div>
     </div>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-6t+ed+2i-1n-4w"
-     data-ad-client="ca-pub-1168224081669943"
-     data-ad-slot="5029128614"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    <div class="row">
-        <div class="col text-center">
-            <blockquote class="blockquote">
-                <p class="mb-0 text-secondary font-italic font-weight-light">Libertatem informationis</p>
-            </blockquote>
-        </div>
-    </div>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-6t+ed+2i-1n-4w"
+        data-ad-client="ca-pub-1168224081669943" data-ad-slot="5029128614"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>`;

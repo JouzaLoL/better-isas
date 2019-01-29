@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
         </li>
         <li>Trvalé přihlášení</li>
         <li>Zvýraznění nových známek</li>
-        <li>Vše ze starého iSASu</li>
+        <li>Ostatní funkce</li>
     </ul>
 </div>`;
 

@@ -9,7 +9,7 @@ module.exports = (znamkyRows, prumeryRows, misc) => `<div class="container shado
     <div class="row">
             <div class="col-sm-12 adsAlert">
             <div class="alert alert-info">
-            🖥️ Náklady na provoz této appky jsou pokrývány z prokliků reklam, které vidíš. Reklamy jsou od Googlu a 100% bezpečné. Prosím tě proto, abys občas na reklamu kliknul, a zajistil tak hladký chod appky pro tebe i ostatní. Díky! <3
+            🖥️ Náklady na provoz této appky jsou pokrývány z prokliků reklam, které vidíš. Reklamy jsou od Googlu a 100% bezpečné. Prosím tě proto, abys občas na reklamu kliknul, a zajistil tak hladký chod appky pro tebe i ostatní. Díky!
             </div>
             </div>
         <div class="col-sm-6">
