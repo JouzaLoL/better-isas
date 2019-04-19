@@ -1,15 +1,7 @@
 module.exports = (alert = "", announcement = "") => `<div class="container shadow-sm">
     <div class="row shadow-sm mb-3" style="color: #33528B">
         <div class="col pl-2" style="border-top: solid;">
-            <h1 class="mb-0 p-1 font-weight-bold text-center">EK</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 adsAlert">
-            <div class="alert alert-warning">
-                Vážení uživatelé. Tato aplikace (EK) <i>není</i> <a href="http://isas.gytool.cz">oficiální aplikací systému iSAS</a>. <b> Jde pouze o volitelnou alternativu </b>.
-                Gymnázium, Olomouc - Hejčín se na EK nijak nepodílí. Omlouvám se za vzniklé nedorozumění.
-            </div>
+            <h1 class="mb-0 p-1 font-weight-bold text-center">Elektronická klasifikace</h1>
         </div>
     </div>
     <div class="row">
