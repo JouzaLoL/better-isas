@@ -38,7 +38,7 @@
     "@types/raven": "^2.5.1",
     "@types/request-promise-native": "^1.0.15",
     "chai": "^4.1.2",
-    "cypress": "^3.0.3",
+    "cypress": "^3.2.0",
     "date-fns": "^1.29.0",
     "dotenv": "^6.0.0",
     "eslint": "^4.19.1",
