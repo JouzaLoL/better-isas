@@ -5,7 +5,7 @@ const decodeWin1250 = require("./decode");
 
 /* Request instance */
 const request = requestProm.defaults({
-    baseUrl: "http://isas.gytool.cz/isas/"
+    baseUrl: "https://isas.gytool.cz/isas/"
 });
 
 async function logIn({ username, password }) {
