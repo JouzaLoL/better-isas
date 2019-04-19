@@ -7,7 +7,7 @@ const Raven = require("raven");
 const helmet = require("helmet");
 
 /* Helmet Security */
-app.use(helmet());
+/* app.use(helmet()); */
 
 // Sentry.io error handling
 Raven.config("https://ff58bf1bb33348ddb0c5b56bbdd932f2@sentry.io/1214091").install();
