@@ -1,10 +1,12 @@
-# EK
+# Elektronická Klasifikace (former Better iSAS)
 [![Build Status](https://travis-ci.org/JouzaLoL/better-isas.svg?branch=master)](https://travis-ci.org/JouzaLoL/better-isas)
 
 Open-source frontend alternative to the [iSAS](http://isas.gytool.cz) application.
 
-## [Official live deployment](https://isas.zlepsi.me)
+### Due to issues with official iSAS servers, we are currently unable to host a live version. Please refer to [Getting Started](#gs) to run locally.
 
+## Screenshots
+![alt](./screenshots/1.png)
 ## License notice
 
 This work is licensed under CC-BY-NC-ND 4.0 with the following additional limitations:
@@ -18,7 +20,8 @@ Contribution purposes = contributing to this project.
 - The owner of the project reserves the right to change the license terms at any moment.
 
 ## Getting Started
-
+<a name="gs"></a>
+Download and install [Node.js](https://nodejs.org/en/)
 ```shell
 $ npm install
 $ npm start
